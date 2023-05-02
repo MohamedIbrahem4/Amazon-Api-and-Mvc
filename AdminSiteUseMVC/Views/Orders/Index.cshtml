@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<AdminSiteUseMVC.ViewModel.Orders.OrderViewModel>
+@inject IViewLocalizer localizer
+<table class="table text-center table-hover">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">@localizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">@localizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">@localizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

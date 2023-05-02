@@ -1,0 +1,96 @@
+﻿@model AdminSiteUseMVC.ViewModel.Products.EditProductViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Edite";
+
+}
+    <h4>@localizer["Product"]: @Model.NameEN</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            @*nameEn*@
+            <div class="form-group">
+                <label asp-for="NameEN" class="control-label"></label>
+                <input asp-for="NameEN" class="form-control" />
+                <span asp-validation-for="NameEN" class="text-danger"></span>
+            </div>
+            @*nameAR*@
+            <div class="form-group">
+                <label asp-for="NameAR" class="control-label"></label>
+                <input asp-for="NameAR" class="form-control" />
+                <span asp-validation-for="NameAR" class="text-danger"></span>
+            </div>
+            @*DescriptionEN*@
+            <div class="form-group">
+                <label asp-for="DescriptionEN" class="control-label"></label>
+                <input asp-for="DescriptionEN" class="form-control" />
+                <span asp-validation-for="DescriptionEN" class="text-danger"></span>
+            </div>
+            @*DescriptionAR*@
+            <div class="form-group">
+                <label asp-for="DescriptionAR" class="control-label"></label>
+                <input asp-for="DescriptionAR" class="form-control" />
+                <span asp-validation-for="DescriptionAR" class="text-danger"></span>
+            </div>
+            @*DiscountPercentage*@
+            <div class="form-group">
+                <label asp-for="DiscountPercentage" class="control-label"></label>
+                <input asp-for="DiscountPercentage" class="form-control" />
+                <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+            </div>
+            @*Price*@
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" type="number" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            @*Quantity*@
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            @*Brand*@
+            <div class="form-group">
+                <label asp-for="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.Brands">
+                    <option value="0" selected disabled>Select Barnd</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            @*stock*@
+            <div class="form-group">
+                <label asp-for="StockId" class="control-label"></label>
+                <select asp-for="StockId" class="form-control" asp-items="ViewBag.Stocks">
+                    <option value="0" >Select Stock</option>
+                </select>
+                <span asp-validation-for="StockId" class="text-danger"></span>
+            </div>
+
+            @*Categories*@
+            <div class="form-group">
+                <label asp-for="CategoriesId" class="control-label"></label>
+                <select asp-for="CategoriesId" class="form-control" asp-items="ViewBag.Categories" multiple>
+                   
+                </select>
+                <span asp-validation-for="CategoriesId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                <button type="submit" class="btn btn-outline-success">@localizer["Save"]</button>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="mt-2">
+        <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

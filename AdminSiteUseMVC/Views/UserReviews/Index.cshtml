@@ -1,0 +1,57 @@
+﻿
+@model IEnumerable<AdminSiteUseMVC.ViewModel.UserReviews.UserReviewViewModel>
+
+<table class="table text-center table-hover">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+         
+          @*  <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comment)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+               @* <td>
+                  
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">Details</a> |
+                    
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AdminSiteUseMVC.ViewModel.Products.ProductViewModel>
+@inject IViewLocalizer localizer
+<p>
+    <a asp-action="Create" class="btn btn-outline-success mt-2">@localizer["Create New Product"]</a>
+</p>
+<table class="table text-center table-hover">
+    <thead>
+        <tr class="bg-dark text-light">
+
+            <th>
+                @Html.DisplayNameFor(model => model.NameEN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NameAR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescriptionEN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescriptionAR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DescriptionAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">@localizer["Edit"]</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">@localizer["Details"]</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">@localizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

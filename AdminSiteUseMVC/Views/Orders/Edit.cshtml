@@ -1,0 +1,63 @@
+﻿
+@model AdminSiteUseMVC.ViewModel.Orders.OrderViewModel
+@inject IViewLocalizer localizer
+@{
+    ViewData["Title"] = "Edite";
+}
+    <h4>@localizer["Order"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            @*Date*@
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            @*Total*@
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+
+           
+           @* <select asp-for="Status" class="form-control"
+                    asp-items="@Html.GetEnumSelectList<Domian.MyStatus>()">
+            </select>*@
+            @*Status*@
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="0" disabled>Select status</option>
+                    @{
+                        var status = ViewBag.Status;
+                        foreach (var item in status)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    }
+                   
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+                  
+                <button type="submit" value="Save" class="btn btn-outline-success">@localizer["Save"]</button>
+               
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="mt-2">
+    <a asp-action="Index" class="btn btn-outline-primary">@localizer["Back to List"]</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,120 @@
+﻿@model AdminSiteUseMVC.ViewModel.Products.ProductViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+}
+
+
+@inject IViewLocalizer localizer
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" asp-controller="products">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*nameEN*@
+            <div class="form-group">
+                <label asp-for="NameEN" class="control-label"></label>
+                <input asp-for="NameEN" class="form-control" />
+                <span asp-validation-for="NameEN" class="text-danger"></span>
+            </div>
+            @*nameAR*@
+            <div class="form-group">
+                <label asp-for="NameAR" class="control-label"></label>
+                <input asp-for="NameAR" class="form-control" />
+                <span asp-validation-for="NameAR" class="text-danger"></span>
+            </div>
+            @*DescriptionEN*@
+            <div class="form-group">
+                <label asp-for="DescriptionEN" class="control-label"></label>
+                <input asp-for="DescriptionEN" class="form-control" />
+                <span asp-validation-for="DescriptionEN" class="text-danger"></span>
+            </div>
+            @*DescriptionAR*@
+            <div class="form-group">
+                <label asp-for="DescriptionAR" class="control-label"></label>
+                <input asp-for="DescriptionAR" class="form-control" />
+                <span asp-validation-for="DescriptionAR" class="text-danger"></span>
+            </div>
+            
+            @*DiscountPercentage*@
+            <div class="form-group">
+                <label asp-for="DiscountPercentage" class="control-label"></label>
+                <input asp-for="DiscountPercentage" class="form-control" />
+                <span asp-validation-for="DiscountPercentage" class="text-danger"></span>
+            </div>
+            @*Price*@
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" type="number"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            @*Quantity*@
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            @*ImagesURL*@
+            <div class="form-group">
+                <label asp-for="ImagesFile" class="control-label"></label>
+                <input asp-for="ImagesFile" class="form-control" multiple accept="image/*" />
+                <span asp-validation-for="ImagesFile" class="text-danger"></span>
+            </div>
+           @if(isRTL)
+            {
+                @*CategoriesAR*@
+                <div class="form-group">
+                    <label asp-for="CategoriesId" class="control-label"></label>
+                    <select asp-for="CategoriesId" class="form-control" asp-items=" ViewBag.CategoriesAR" multiple>
+                        <option value="0" selected disabled>Select Multi Categories</option>
+                    </select>
+                    <span asp-validation-for="CategoriesId" class="text-danger"></span>
+                </div>
+            }else
+            {
+                 @*Categories*@
+            <div class="form-group">
+                <label asp-for="CategoriesId" class="control-label"></label>
+                <select asp-for="CategoriesId" class="form-control" asp-items="ViewBag.Categories" multiple>
+                    <option value="0" selected disabled>Select Multi Categories</option>
+                </select>
+                <span asp-validation-for="CategoriesId" class="text-danger"></span>
+            </div>
+                
+            }
+           
+           
+
+            @*Brand*@
+            <div class="form-group">
+                <label asp-for="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.Brands" >
+                    <option value="0" selected disabled>Select Barnd</option>
+                </select>
+                <span asp-validation-for="BrandId" class="text-danger"></span>
+            </div>
+            @*stock*@
+            <div class="form-group">
+                <label asp-for="StockId" class="control-label"></label>
+                <select asp-for="StockId" class="form-control" asp-items="ViewBag.Stocks">
+                    <option value="0" selected disabled>Select Stock</option>
+                </select>
+                <span asp-validation-for="StockId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-2">
+               
+                <button type="submit" class="btn btn-outline-success">@localizer["Create"]</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+    <a asp-action="Index" class="btn btn-outline-primary">@localizer["Back to List"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
